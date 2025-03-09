@@ -1,0 +1,18 @@
+version: "2"
+sql:
+  - engine: "sqlite"
+    queries: "pkg/appdb/sql/queries/"
+    schema: "pkg/appdb/sql/schema/"
+    gen:
+      go:
+        package: "appdb"
+        out: "pkg/appdb"
+        sql_package: "database/sql"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        overrides:
+          - db_type: "timestamptz"
+            go_type: "time.Time"
+          - db_type: "timestamp"
+            go_type: "time.Time" 

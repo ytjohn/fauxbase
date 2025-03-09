@@ -1,0 +1,48 @@
+<div class="mx-auto max-w-[350px] space-y-6" x-data="loginForm">
+    <div class="space-y-2 text-center">
+        <h1 class="text-2xl font-bold tracking-tight">Welcome back</h1>
+        <p class="text-sm text-muted-foreground">Enter your credentials to sign in</p>
+    </div>
+
+    <div x-show="errorMessage" 
+         class="bg-destructive/15 text-destructive text-sm p-3 rounded-md"
+         x-text="errorMessage">
+    </div>
+
+    <div class="space-y-4">
+        <div class="space-y-2">
+            <label for="email" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Email</label>
+            <input type="email" 
+                   id="email" 
+                   x-model="email"
+                   class="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                   placeholder="name@example.com">
+        </div>
+        <div class="space-y-2">
+            <label for="password" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Password</label>
+            <input type="password" 
+                   id="password" 
+                   x-model="password"
+                   class="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                   placeholder="••••••••">
+        </div>
+        <button type="button" 
+                @click="login"
+                class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 w-full"
+                :disabled="loading">
+            <span x-show="!loading">Sign In</span>
+            <div x-show="loading" class="flex items-center">
+                <svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Signing in...
+            </div>
+        </button>
+    </div>
+
+    <div class="text-center text-sm text-muted-foreground">
+        Don't have an account? 
+        <a href="#" class="text-primary underline-offset-4 hover:underline">Sign up</a>
+    </div>
+</div> 

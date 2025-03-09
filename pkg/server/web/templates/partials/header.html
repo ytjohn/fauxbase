@@ -1,0 +1,57 @@
+<nav class="flex items-center justify-between">
+    <div class="flex items-center space-x-6">
+        <a href="/" x-data="appTitle" x-text="title" class="text-xl font-bold text-foreground">FauxBase</a>
+        
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="/" class="text-sm font-medium text-foreground transition-colors hover:text-primary">Home</a>
+            <a href="/about" class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">About</a>
+        </div>
+    </div>
+
+    <!-- Auth Section -->
+    <div x-data="headerAuth" class="relative">
+        <!-- Loading State -->
+        <div x-show="loading" class="animate-pulse">
+            <div class="w-8 h-8 bg-muted rounded-full"></div>
+        </div>
+        
+        <!-- Logged Out State -->
+        <a x-show="!loading && !isAuthenticated()" 
+           href="/login"
+           class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2">
+            Login
+        </a>
+        
+        <!-- Logged In State -->
+        <div x-show="!loading && isAuthenticated()" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" 
+                    class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     class="h-5 w-5" 
+                     viewBox="0 0 24 24" 
+                     fill="none" 
+                     stroke="currentColor" 
+                     stroke-width="2" 
+                     stroke-linecap="round" 
+                     stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div x-show="dropdownOpen"
+                 @click.away="dropdownOpen = false"
+                 class="absolute right-0 mt-2 w-48 py-1 bg-background rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                <a href="/account" 
+                   class="block px-4 py-2 text-sm text-foreground hover:bg-accent">
+                    Account
+                </a>
+                <button @click="logout()" 
+                        class="block w-full text-left px-4 py-2 text-sm text-foreground hover:bg-accent">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</nav> 
