@@ -170,6 +170,7 @@ document.addEventListener('alpine:init', () => {
         user: null,
         loading: true,
         error: null,
+        copySuccess: false,
 
         init() {
             this.fetchUserInfo();
@@ -194,6 +195,19 @@ document.addEventListener('alpine:init', () => {
                 this.error = 'Failed to load user information';
             } finally {
                 this.loading = false;
+            }
+        },
+
+        async copyToken() {
+            const token = AuthService.getAccessToken();
+            try {
+                await navigator.clipboard.writeText(token);
+                this.copySuccess = true;
+                setTimeout(() => {
+                    this.copySuccess = false;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy token:', err);
             }
         }
     }));

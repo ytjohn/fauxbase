@@ -29,7 +29,7 @@ var Log *slog.Logger
 // initConfig initializes the configuration with defaults and environment variables
 func initConfig() {
 	// Set defaults
-	viper.SetDefault("database.path", "data/fauxbase.db")
+	viper.SetDefault("database.path", "data/devdatabase.db")
 	viper.SetDefault("server.host", "127.0.0.1")
 	viper.SetDefault("server.port", 8080)
 	viper.SetDefault("debug", false)

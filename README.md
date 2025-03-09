@@ -45,7 +45,7 @@ You'll need Go 1.23 or higher to compile it.
 FauxBase supports SQLite and PostgreSQL for data storage. The database schema is embedded in the binary and can be initialized with:
 
 ```bash
-# Initialize database (creates data/fauxbase.db by default)
+# Initialize database (creates data/devdatabase.db by default)
 fauxbase db init
 ```
 
